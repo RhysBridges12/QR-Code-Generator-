@@ -76,7 +76,34 @@ After the initial setup, activate the virtual environment before running the app
 .venv\Scripts\activate
 ```
 
+### Linux
 
+The project includes a Nix development environment:
 
+```bash
+nix develop
+```
+
+## Running the Application
+
+Start the Flask development server with:
+
+```bash
+flask --app .\src\python_qr_project\app.py run
+```
+
+The terminal will provide a local URL. Hold **Ctrl** and click the URL to open the application in your browser.
+
+## Testing
+
+The project includes automated tests covering the QR code generation components.
+
+Run the test suite with:
+
+```bash
+pytest
+```
+
+The output will indicate which tests have passed or failed.
 
 
