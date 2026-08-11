@@ -1,84 +1,49 @@
-Module Code: CS2PP
-Assignment Report title: Python QR code generator
-Student Number(s):
- - 32008998
- - 32018221
- - 30018430
- - 32015526
- - 32013309
+# QR Code Generator
 
-Actual hrs spent for this assignment:
- - 25
+> **USER WARNING: NEVER SCAN A QR CODE FROM AN UNTRUSTED SOURCE.**
 
-Which artificial intelligence tools used:
- - n/a
+This application was created with guidance from [Thonky's QR Code Tutorial](https://www.thonky.com/qr-code-tutorial/).
 
+## Description of Functionality
 
-```
-This application was created with guidence from thonky.com's QR code tutorial: https://www.thonky.com/qr-code-tutorial/
-``` 
+This application creates a QR code from arbitrary user input and is capable of generating Version 1 and Version 2 QR codes.
 
-# **USER WARNING: NEVER SCAN A QR CODE FROM AN UNTRUSTED SOURCE**
+Input data is converted into byte-mode data and encoded into a bitstream containing mode indicators and a character count.
 
+Reed-Solomon error correction codewords are generated at one of four levels:
 
+- Low (L)
+- Medium (M)
+- Quartile (Q)
+- High (H)
 
-# Description of Functionality
-This application creates a QR code from an arbitrary input from a user, it is capable of generating version 1 and version 2 QR codes; 
-Input data is converted into a byte mode data which is encoded to a bitstream with mode indicators and a character count; 
+The error correction codewords are appended to the encoded data before the complete bitstream is structured and mapped into the QR code matrix.
 
-Reed-Solomon error correction codewords are generated at one of four levels, Low (L), Medium (M) Quartile (Q) or High (H) and appended to the bit stream.
+The QR matrix is constructed with the required structural components, including:
 
-The fully structured bit stream is mapped into the shell of an empty matrix, representing the qr code structure, alongside:
-The finders, seperators, alignment patterns, timing patterns, reserved areas for format information and the dark module.
+- Finder patterns
+- Separators
+- Alignment patterns
+- Timing patterns
+- Reserved areas for format information
+- The dark module
 
-Masking patterns are applied to the QR matrix to reduce large areas of a single colour and ensure light modules and dark modules are roughly equal in 
-quantity for the ease of detection on QR code scanners.
+Masking patterns are then applied to the QR matrix to reduce large areas of a single colour and improve the readability of the QR code by scanners.
 
-Additionally, the format information is generated, containing the error correction level and masking pattern being used, and placed into the matrix to aid in decoding.
+Format information is generated containing the selected error correction level and masking pattern. This information is then placed within the matrix to assist QR code decoding.
 
-The final QR code image is displayed below the user entry box with each location in the matrix representing image data.
+The completed QR code is converted into an image and displayed below the user input field.
 
+## Installation
 
-# Executing the Application:
-Supported Operating Systems: Windows and Linux
+**Supported operating systems:** Windows and Linux
 
-### Install Dependencies: Windows Terminal
-When opening for the first time, Enter:
-```
+### Windows
+
+Install Python using Windows Package Manager:
+
+```bash
 winget install python3
-```
-Close and reopen the terminal, Enter:
-```
-python -m venv .venv
-.venv\Scripts\activate
-pip install .[dev]
-```
-
-After the first execution, Always Enter:
-```
-.venv\Scripts\activate
-```
-
-### Install Dependencies: Linux
-Enter:
-```
-nix develop
-```
-
-### Starting the Application:
-Run this command:
-```
-flask --app .\src\python_qr_project\app.py run
-```
-Hold Ctrl + Click the url that shows up under the red development server warning.
-The program will open.
-
-### To Execute Testing:
-Enter:
-```
-pytest
-```
-The output will indicate which tests have failed or suceeded.
 
 
 # Programming techniques:
