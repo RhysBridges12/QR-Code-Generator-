@@ -34,6 +34,17 @@ Format information is generated containing the selected error correction level a
 
 The completed QR code is converted into an image and displayed below the user input field.
 
+## My Contributions
+
+This was a collaborative group project. My primary contributions focused on the QR matrix construction and formatting stages of the generation pipeline.
+
+I contributed to the implementation of:
+
+- **QR Matrix Placement** – Implemented the placement of finder patterns, separators, alignment patterns, timing patterns, reserved format-information areas and the dark module within the QR matrix.
+- **Format Information** – Implemented the generation and placement of QR format information, including error-correction level and masking pattern data.
+- **Testing** – Developed and contributed to automated tests for the QR placement and formatting components.
+- **Integration** – Integrated all components with the wider QR generation pipeline using Git-based version control.
+
 ## Installation
 
 **Supported operating systems:** Windows and Linux
