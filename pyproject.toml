@@ -1,0 +1,47 @@
+# curtsey of https://github.com/nix-community/templates/blob/main/python/pyproject.toml
+[build-system]
+requires = [
+  "setuptools",
+  "wheel"
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# include templates in the package
+[tool.setuptools.package-data]
+python_qr_project = ['templates/*']
+
+[tool.pytest.ini_options]
+addopts = "--import-mode=importlib"
+
+[project]
+name = "python_qr_project"
+version = "0.0.0"
+authors = [
+    # {name = "You", email = "you@you.com"},
+]
+description = "QR code generator"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "reedsolo",
+  "flask",
+  "numpy",
+  "pillow",
+]
+
+[project.optional-dependencies]
+testing = [
+  "pytest",
+  "ruff"
+]
+dev = [
+  "python-lsp-server",
+  "python_qr_project[testing]"
+]
+
+
+[project.scripts]
+python_qr_project = "python_qr_project.app:main"

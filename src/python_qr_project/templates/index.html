@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<head>
+  <title>Qr Code Generator</title>
+  <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+  <style>
+    .generator_opt {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .pick_colours {
+      display: flex;
+      flex-direction: row;
+    }
+    .pick_colours > div {
+      padding-right: 25px;
+    }
+  </style>
+</head>
+<body>
+  <div style="display: grid;">
+    <h1>QR Code Generator</h1>
+    <form hx-post="/generate" id="submission-form" hx-target="#qrcode" style="display: flex; flex-direction: column;">
+      <label for="data">Data Contents</label>
+      <input type="text" id="data" name="data" autocomplete="off" required>
+      <label for="scale_factor">Output Image Scale Factor</label>
+      <input type="number" id="scale_factor" name="scale_factor" min="1" max="25" value="10" required>
+      <span class="pick_colours">
+        <div>
+          <label for="bg_colour">Background Colour</label>
+          <input type="color" id="bg_colour" name="bg_colour" value="#FFFFFF">
+        </div>
+        <div>
+          <label for="fg_colour">Code Colour</label>
+          <input type="color" id="fg_colour" name="fg_colour" value="#000000">
+        </div>
+      </span>
+      
+      <h4>Generator Parameters</h4>
+      <span class="generator_opt">
+        <input type="checkbox" id="force_byte_mode" name="force_byte_mode" checked>
+        <label for="force_byte_mode">Force use of byte data mode even when suboptimal</label>
+     </span>
+     <span class="step_by_step">
+        <input type="checkbox" id="step_by_step" name="step_by_step">
+        <label for="step_by_step">Show step-by-step creation process</label>
+     </span>
+     <!-- sample option; replace option_name with name, and add desc in label tag. then, retrieve arg and pass like with force_byte_move inside of views.py
+     <span class="generator_opt">
+        <input type="checkbox" id="option_name" name="option_name" checked>
+        <label for="option_name">Option description here</label>
+     </span>
+     -->
+
+     
+      <input type="submit" value="Create Code">
+    </form>
+
+    <h3>Warning: Never scan an qr code from an untrusted source</h3>
+    
+    <div id="qrcode">
+    </div>
+  </div>
+</body>
